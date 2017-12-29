@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.Select;
 import java.io.IOException;
 import java.util.List;
 
+import static utility.AppDriver.driver;
+
 public class EventHandler {
 
     public void click(WebElement element) {
@@ -31,13 +33,14 @@ public class EventHandler {
         }
     }
 
+    public void switchToAlert(){
+        driver.switchTo().alert().accept();
+    }
+
     public void selectDate(WebElement date, String mm, String yy, String dd) throws IOException, InterruptedException {
         click(date);
-        //dm.waitUntil(new UIMap().getMonthPicker(), 200);
         selectByVisibleText(new UIMap().getMonthPicker(), mm);
-        //dm.waitUntil(new UIMap().getYearPicker(), 20);
         selectByVisibleText(new UIMap().getYearPicker(), yy);
-        //dm.waitUntil(new UIMap().getDayPicker(), 200);
         selectValueFromTable(new UIMap().getDayPicker(), dd);
         Thread.sleep(500);
     }

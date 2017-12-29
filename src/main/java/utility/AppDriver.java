@@ -12,8 +12,8 @@ public class AppDriver {
     private static ReadFile readFile = new ReadFile();
     private static File fileConfig = new File("configuration\\GenericConfig.properties");
 
-    private AppDriver(){
-        throw new IllegalStateException();
+    public AppDriver(){
+        //throw new IllegalStateException();
     }
 
     public static WebDriver getCurrentDriver() throws IOException {
@@ -24,5 +24,9 @@ public class AppDriver {
             driver.manage().window().maximize();
         }
         return driver;
+    }
+
+    public void getUrl(String url){
+        driver.get(url);
     }
 }

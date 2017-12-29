@@ -8,10 +8,14 @@ import java.io.IOException;
 
 public class OnlineRegistration extends GenericClass {
 
+    String cardNo = "5123 4567 8901 2346";
+    String expiryDate = "05";
+    String expiryYear = "2020";
+    String cvv = "123";
+
     public OnlineRegistration(WebDriver d) {
         page = this.getClass().getSimpleName();
-        pack = gm.getPackage(this.getClass().getPackage().getName());
-        file = gm.getFilePath(page, pack);
+        file = gm.getFilePath(page);
         PageFactory.initElements(d, this);
     }
 
@@ -175,6 +179,7 @@ public class OnlineRegistration extends GenericClass {
 
     public void selectIsSibling(String value) throws IOException, InterruptedException {
         ehandler.selectByVisibleText(readFile.getElement("issibling"), value);
+        Thread.sleep(1000);
     }
 
     public void enterFirstSiblingName(String name) throws IOException {
@@ -209,7 +214,37 @@ public class OnlineRegistration extends GenericClass {
         ehandler.enterText(readFile.getElement("noofgirls"), no);
     }
 
-    public void clickNext() throws IOException {
+    public void clickNext() throws IOException, InterruptedException {
         ehandler.click(readFile.getElement("next"));
+        Thread.sleep(1000);
+        ehandler.switchToAlert();
+    }
+
+    public void clickProceedToOnlinePayment() throws IOException {
+        ehandler.click(readFile.getElement("proceedtoonlinepayment"));
+    }
+
+    public void clickDebitCreditcard() throws IOException {
+        ehandler.click(readFile.getElement("debitcreditcard"));
+    }
+
+    public void enterCardNumber() throws IOException {
+        ehandler.enterText(readFile.getElement("cardnumber"), cardNo);
+    }
+
+    public void enterExpiryDate() throws IOException {
+        ehandler.enterText(readFile.getElement("expirydate"), expiryDate);
+    }
+
+    public void enterExpiryYear() throws IOException {
+        ehandler.enterText(readFile.getElement("expiryyear"), expiryYear);
+    }
+
+    public void enterCvv() throws IOException {
+        ehandler.enterText(readFile.getElement("cvvno"), cvv);
+    }
+
+    public void clickPay() throws IOException {
+        ehandler.click(readFile.getElement("clickpay"));
     }
 }

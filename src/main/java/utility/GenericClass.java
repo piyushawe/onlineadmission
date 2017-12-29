@@ -12,4 +12,6 @@ public abstract class GenericClass {
     protected ReadFile readFile = new ReadFile();
     protected EventHandler ehandler = new EventHandler();
     protected GetterMethods gm = new GetterMethods();
+
+    protected File fileConfig = new File("configuration\\GenericConfig.properties");
 }
