@@ -238,7 +238,7 @@ public class OnlineRegistration extends GenericClass {
 
     public void clickDebitCreditCard() throws IOException, InterruptedException {
         ehandler.click(readFile.getElement("debitcreditcard"));
-        Thread.sleep(2000);
+        Thread.sleep(4000);
     }
 
     public void enterCardNumber() throws IOException {
