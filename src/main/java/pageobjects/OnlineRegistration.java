@@ -264,12 +264,10 @@ public class OnlineRegistration extends GenericClass {
 
     public void upLoadPhoto() throws IOException, FindFailed, InterruptedException {
         ehandler.click(readFile.getElement("choosefile"));
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         ehandler.getImage();
         ehandler.click(readFile.getElement("upload"));
         Thread.sleep(200);
-        //ehandler.click(readFile.getElement("submit"));
-        //Thread.sleep(2000);
         ehandler.cropImage(readFile.getElement("cropimage"));
         ehandler.click(readFile.getElement("crop"));
         ehandler.switchToAlert();
