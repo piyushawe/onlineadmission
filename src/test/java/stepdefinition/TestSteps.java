@@ -12,7 +12,7 @@ import static utility.AppDriver.driver;
 
 public class TestSteps extends GenericClass {
 
-    AppDriver ad = new AppDriver();
+    private AppDriver ad = new AppDriver();
 
     @Given("^for url$")
     public void for_url() throws Throwable {
@@ -247,10 +247,17 @@ public class TestSteps extends GenericClass {
 
     @Then("^make payment$")
     public void makePayment() throws Throwable {
+        new OnlineRegistration(driver).clickProceedToOnlinePayment();
+        new OnlineRegistration(driver).clickDebitCreditCard();
         new OnlineRegistration(driver).enterCardNumber();
         new OnlineRegistration(driver).enterExpiryDate();
         new OnlineRegistration(driver).enterExpiryYear();
         new OnlineRegistration(driver).enterCvv();
         new OnlineRegistration(driver).clickPay();
+    }
+
+    @Then("^upload photo$")
+    public void uploadPhoto() throws Throwable {
+        new OnlineRegistration(driver).upLoadPhoto();
     }
 }

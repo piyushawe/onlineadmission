@@ -1,17 +1,22 @@
 package pageobjects;
 
+import gherkin.lexer.Th;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.sikuli.api.Screen;
+import org.sikuli.script.FindFailed;
 import utility.GenericClass;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class OnlineRegistration extends GenericClass {
 
-    String cardNo = "5123 4567 8901 2346";
-    String expiryDate = "05";
-    String expiryYear = "2020";
-    String cvv = "123";
+    private String cardNo = "5123 4567 8901 2346";
+    private String expiryDate = "05";
+    private String expiryYear = "20";
+    private String cvv = "123";
 
     public OnlineRegistration(WebDriver d) {
         page = this.getClass().getSimpleName();
@@ -57,8 +62,10 @@ public class OnlineRegistration extends GenericClass {
 
     public void selectReligion(String religion) throws IOException, InterruptedException {
         ehandler.selectByVisibleText(readFile.getElement("studentreligion"), religion);
-        if (religion.equalsIgnoreCase("SIKH"))
+        if (religion.equalsIgnoreCase("CHRISTIAN")){
+            Thread.sleep(1000);
             enterParish("aa");
+        }
     }
 
     public void enterParish(String parish) throws IOException {
@@ -103,8 +110,10 @@ public class OnlineRegistration extends GenericClass {
 
     public void selectFatherReligion(String religion) throws IOException, InterruptedException {
         ehandler.selectByVisibleText(readFile.getElement("fatherreligion"), religion);
-        if (religion.equalsIgnoreCase("SIKH"))
+        if (religion.equalsIgnoreCase("CHRISTIAN")){
+            Thread.sleep(1000);
             enterFatherParish("aa");
+        }
     }
 
     public void enterFatherParish(String parish) throws IOException {
@@ -145,8 +154,10 @@ public class OnlineRegistration extends GenericClass {
 
     public void selectMotherReligion(String religion) throws IOException, InterruptedException {
         ehandler.selectByVisibleText(readFile.getElement("motherreligion"), religion);
-        if (religion.equalsIgnoreCase("SIKH"))
+        if (religion.equalsIgnoreCase("CHRISTIAN")){
+            Thread.sleep(1000);
             enterMotherParish("aa");
+        }
     }
 
     public void enterMotherParish(String parish) throws IOException {
@@ -216,16 +227,18 @@ public class OnlineRegistration extends GenericClass {
 
     public void clickNext() throws IOException, InterruptedException {
         ehandler.click(readFile.getElement("next"));
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         ehandler.switchToAlert();
     }
 
-    public void clickProceedToOnlinePayment() throws IOException {
+    public void clickProceedToOnlinePayment() throws IOException, InterruptedException {
         ehandler.click(readFile.getElement("proceedtoonlinepayment"));
+        Thread.sleep(5000);
     }
 
-    public void clickDebitCreditcard() throws IOException {
+    public void clickDebitCreditCard() throws IOException, InterruptedException {
         ehandler.click(readFile.getElement("debitcreditcard"));
+        Thread.sleep(2000);
     }
 
     public void enterCardNumber() throws IOException {
@@ -240,11 +253,25 @@ public class OnlineRegistration extends GenericClass {
         ehandler.enterText(readFile.getElement("expiryyear"), expiryYear);
     }
 
-    public void enterCvv() throws IOException {
+    public void enterCvv() throws IOException, InterruptedException {
         ehandler.enterText(readFile.getElement("cvvno"), cvv);
+        Thread.sleep(2000);
     }
 
     public void clickPay() throws IOException {
         ehandler.click(readFile.getElement("clickpay"));
+    }
+
+    public void upLoadPhoto() throws IOException, FindFailed, InterruptedException {
+        ehandler.click(readFile.getElement("choosefile"));
+        Thread.sleep(2000);
+        ehandler.getImage();
+        ehandler.click(readFile.getElement("upload"));
+        Thread.sleep(200);
+        //ehandler.click(readFile.getElement("submit"));
+        //Thread.sleep(2000);
+        ehandler.cropImage(readFile.getElement("cropimage"));
+        ehandler.click(readFile.getElement("crop"));
+        ehandler.switchToAlert();
     }
 }
