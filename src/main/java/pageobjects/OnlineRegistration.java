@@ -1,15 +1,12 @@
 package pageobjects;
 
-import gherkin.lexer.Th;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.sikuli.api.Screen;
 import org.sikuli.script.FindFailed;
 import utility.GenericClass;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 
 public class OnlineRegistration extends GenericClass {
 
@@ -262,14 +259,31 @@ public class OnlineRegistration extends GenericClass {
         ehandler.click(readFile.getElement("clickpay"));
     }
 
-    public void upLoadPhoto() throws IOException, FindFailed, InterruptedException {
+    public void uploadPhoto() throws IOException, FindFailed, InterruptedException {
         ehandler.click(readFile.getElement("choosefile"));
         Thread.sleep(1000);
-        ehandler.getImage();
+        ehandler.getImage(readFile.readProperty(file, "studentimage"));
         ehandler.click(readFile.getElement("upload"));
         Thread.sleep(200);
         ehandler.cropImage(readFile.getElement("cropimage"));
         ehandler.click(readFile.getElement("crop"));
         ehandler.switchToAlert();
+    }
+
+    public void uploadPhotos(List<java.util.List<String>> data) throws IOException, FindFailed, InterruptedException {
+        for (List<String> value: data){
+            if (value.get(0).equals("student photo")){
+                ehandler.getPhoto(readFile.getElement("choosefile"), readFile.readProperty(file, "studentimage"));
+            }
+            if (value.get(0).equals("photo with parents")){
+                ehandler.getPhoto(readFile.getElement("choosefile1"), readFile.readProperty(file, "withparentsimage"));
+            }
+            if (value.get(0).equals("birth certificate")){
+                ehandler.getPhoto(readFile.getElement("choosefile2"), readFile.readProperty(file, "bc"));
+            }
+            if (value.get(0).equals("address proof")){
+                ehandler.getPhoto(readFile.getElement("choosefile3"), readFile.readProperty(file, "addressproof"));
+            }
+        }
     }
 }

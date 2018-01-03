@@ -1,5 +1,6 @@
 package utility;
 
+import gherkin.lexer.Th;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -13,6 +14,8 @@ import java.util.List;
 import static utility.AppDriver.driver;
 
 public class EventHandler {
+
+  ReadFile readFile = new ReadFile();
 
     public void click(WebElement element) {
         element.click();
@@ -50,16 +53,29 @@ public class EventHandler {
         Thread.sleep(500);
     }
 
-    public void getImage() throws FindFailed {
+    public void getImage(String path) throws FindFailed {
         Screen screen = new Screen();
         Pattern fileName = new Pattern("F:\\onlineadmission\\src\\main\\resources\\filename.png");
         Pattern open = new Pattern("F:\\onlineadmission\\src\\main\\resources\\open.png");
-        screen.type(fileName, "F:\\onlineadmission\\src\\main\\resources\\Desert.jpg");
+        screen.type(fileName, path);
         screen.click(open);
     }
 
     public void cropImage(WebElement cropTracker) {
         Actions crop = new Actions(driver);
         crop.dragAndDropBy(cropTracker, 30, 220).perform();
+    }
+
+    public void getPhoto(WebElement element, String path) throws InterruptedException, FindFailed, IOException {
+        click(element);
+        Thread.sleep(1000);
+        getImage(path);
+        click(readFile.getElement("upload"));
+        Thread.sleep(200);
+        driver.navigate().back();
+        Thread.sleep(1000);
+        //cropImage(readFile.getElement("cropimage"));
+        //click(readFile.getElement("crop"));
+        //switchToAlert();
     }
 }

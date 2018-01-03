@@ -1,12 +1,14 @@
 package stepdefinition;
 
-import cucumber.api.PendingException;
+import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import pageobjects.OnlineRegistration;
 import utility.AppDriver;
 import utility.GenericClass;
+
+import java.util.List;
 
 import static utility.AppDriver.driver;
 
@@ -16,7 +18,7 @@ public class TestSteps extends GenericClass {
 
     @Given("^for url$")
     public void for_url() throws Throwable {
-       ad.getUrl(readFile.readProperty(fileConfig, "url"));
+        ad.getUrl(readFile.readProperty(fileConfig, "urll"));
     }
 
     @When("^user select class \"([^\"]*)\"$")
@@ -112,7 +114,6 @@ public class TestSteps extends GenericClass {
     @When("^enter father name \"([^\"]*)\"$")
     public void enter_father_name(String arg1) throws Throwable {
         new OnlineRegistration(driver).enterFatherName(arg1);
-
     }
 
     @When("^select father religion \"([^\"]*)\"$")
@@ -258,6 +259,12 @@ public class TestSteps extends GenericClass {
 
     @Then("^upload photo$")
     public void uploadPhoto() throws Throwable {
-        new OnlineRegistration(driver).upLoadPhoto();
+        new OnlineRegistration(driver).uploadPhoto();
+    }
+
+    @When("^upload photos to$")
+    public void upload_photos_to(DataTable arg1) throws Throwable {
+        List<List<String>> data = arg1.raw();
+        new OnlineRegistration(driver).uploadPhotos(data);
     }
 }
