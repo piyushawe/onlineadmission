@@ -27,7 +27,6 @@ public class CucumberHooks {
 
     @After
     public void closeBrowser() throws IOException {
-
         //driver.quit();
         driver = null;
     }

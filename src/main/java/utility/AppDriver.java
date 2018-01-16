@@ -13,7 +13,7 @@ public class AppDriver {
     private static File fileConfig = new File("configuration\\GenericConfig.properties");
 
     public AppDriver(){
-        //throw new IllegalStateException();
+        throw new IllegalStateException();
     }
 
     public static WebDriver getCurrentDriver() throws IOException {

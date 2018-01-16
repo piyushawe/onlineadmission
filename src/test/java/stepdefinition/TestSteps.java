@@ -48,12 +48,12 @@ public class TestSteps extends GenericClass {
 
     @When("^enter student middle name \"([^\"]*)\"$")
     public void enter_student_middle_name(String arg1) throws Throwable {
-        new OnlineRegistration(driver).enterMiddlename(arg1);
+        new OnlineRegistration(driver).enterMiddleName(arg1);
     }
 
     @When("^enter student last name \"([^\"]*)\"$")
     public void enter_student_last_name(String arg1) throws Throwable {
-        new OnlineRegistration(driver).enterLastname(arg1);
+        new OnlineRegistration(driver).enterLastName(arg1);
     }
 
     @When("^enter date of birth as \"([^\"]*)\" year \"([^\"]*)\" and \"([^\"]*)\"$")

@@ -41,11 +41,11 @@ public class OnlineRegistration extends GenericClass {
         ehandler.enterText(readFile.getElement("firstname"), fname);
     }
 
-    public void enterMiddlename(String mname) throws IOException {
+    public void enterMiddleName(String mname) throws IOException {
         ehandler.enterText(readFile.getElement("middlename"), mname);
     }
 
-    public void enterLastname(String lname) throws IOException {
+    public void enterLastName(String lname) throws IOException {
         ehandler.enterText(readFile.getElement("lastname"), lname);
     }
 
@@ -270,7 +270,7 @@ public class OnlineRegistration extends GenericClass {
         ehandler.switchToAlert();
     }
 
-    public void uploadPhotos(List<java.util.List<String>> data) throws IOException, FindFailed, InterruptedException {
+    public void uploadPhotos(List<List<String>> data) throws IOException, FindFailed, InterruptedException {
         for (List<String> value: data){
             if (value.get(0).equals("student photo")){
                 ehandler.getPhoto(readFile.getElement("choosefile"), readFile.readProperty(file, "studentimage"));

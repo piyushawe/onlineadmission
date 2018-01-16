@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static utility.AppDriver.driver;
+import static utility.GenericClass.file;
 
 public class EventHandler {
 
@@ -29,7 +30,7 @@ public class EventHandler {
         Thread.sleep(100);
     }
 
-    private void selectValueFromTable(WebElement table, String value) throws IOException {
+    private void selectValueFromTable(String value) throws IOException {
         List<WebElement> cells = new UIMap().getCell();
         for (WebElement cell : cells) {
             if (cell.getText().equals(value)) {
@@ -48,14 +49,14 @@ public class EventHandler {
         Thread.sleep(100);
         selectByVisibleText(new UIMap().getMonthPicker(), mm);
         selectByVisibleText(new UIMap().getYearPicker(), yy);
-        selectValueFromTable(new UIMap().getDayPicker(), dd);
+        selectValueFromTable(dd);
         Thread.sleep(500);
     }
 
-    public void getImage(String path) throws FindFailed {
+    public void getImage(String path) throws FindFailed, IOException {
         Screen screen = new Screen();
-        Pattern fileName = new Pattern("F:\\onlineadmission\\src\\main\\resources\\filename.png");
-        Pattern open = new Pattern("F:\\onlineadmission\\src\\main\\resources\\open.png");
+        Pattern fileName = new Pattern(readFile.readProperty(file, "filename"));
+        Pattern open = new Pattern(readFile.readProperty(file, "open"));
         screen.type(fileName, path);
         screen.click(open);
     }
