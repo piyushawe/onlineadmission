@@ -15,6 +15,8 @@ public class OnlineRegistration extends GenericClass {
     private String expiryYear = "20";
     private String cvv = "123";
 
+    //Krishna pandey
+
     public OnlineRegistration(WebDriver d) {
         page = this.getClass().getSimpleName();
         file = gm.getFilePath(page);
